@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Employee</h1>
+        <form method="POST">
+            <label>ID: <input type="text" value="{{ employee[0] }}" disabled></label><br>
+            <label>Name: <input type="text" name="name" value="{{ employee[1] }}" required></label><br>
+            <label>Age: <input type="text" name="age" value="{{ employee[2] }}" required></label><br>
+            <label>Role: <input type="text" name="role" value="{{ employee[3] }}" required></label><br>
+            <input type="submit" value="Update Employee">
+        </form>
+    </div>
+</body>
+</html>

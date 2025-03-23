@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmployeeSync</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #6b7280;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .button {
+            padding: 5px 10px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+        .update-btn {
+            background-color: #3498db;
+        }
+        .update-btn:hover {
+            background-color: #2980b9;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        .message {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EmployeeSync - Employee Management</h1>
+        <form method="POST">
+            <label>ID: <input type="text" name="id" required></label><br>
+            <label>Name: <input type="text" name="name" required></label><br>
+            <label>Age: <input type="text" name="age" required></label><br>
+            <label>Role: <input type="text" name="role" required></label><br>
+            <input type="submit" name="add" value="Add Employee">
+        </form>
+        <p class="message">{{ message }}</p>
+        <h2>Employee List</h2>
+        <table>
+            <tr><th>ID</th><th>Name</th><th>Age</th><th>Role</th><th>Actions</th></tr>
+            {% for emp in employees %}
+            <tr>
+                <td>{{ emp[0] }}</td>
+                <td>{{ emp[1] }}</td>
+                <td>{{ emp[2] }}</td>
+                <td>{{ emp[3] }}</td>
+                <td>
+                    <a href="{{ url_for('update_employee_form', id=emp[0]) }}" class="button update-btn">Update</a>
+                    <form action="{{ url_for('delete_employee', id=emp[0]) }}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" class="button delete-btn">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
